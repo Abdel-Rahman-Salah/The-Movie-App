@@ -1,0 +1,16 @@
+.page-header
+{
+ margin-top: 3.5%;
+ font-family: 'Arimo', Arial, sans-serif;
+ text-align: center;
+}
+
+button
+{
+    width: 15%;
+    margin-left: 45%;
+}
+
+html {
+     background-color: black; 
+    }

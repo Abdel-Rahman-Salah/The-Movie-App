@@ -1,0 +1,14 @@
+<app-navbar></app-navbar>
+<h4 class="page-header"> Top Rated Movies</h4>
+<div text-center>
+<div class="row gx-1 " >
+        <app-movie-item
+        *ngFor="let movie of movies" class="col-md-4 col-sm-6 col-12"
+        [movie]="movie">
+        </app-movie-item>
+</div>
+<button  class="btn btn-primary" (click)="loadMore()" id="more_button">Show More</button>
+</div>   
+
+ 
+  

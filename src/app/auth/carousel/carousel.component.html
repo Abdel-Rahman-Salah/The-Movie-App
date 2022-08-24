@@ -1,0 +1,12 @@
+<div class="container-fluid">
+    <ngb-carousel >
+      <ng-template ngbSlide *ngFor="let photo of slider_photos">
+        <div class="wrapper">
+            <img [src]=photo class="w-100 rounded-4 shadow-4"
+            alt="" style="width:492px; height:630px"/>
+        </div>
+        <div class="carousel-caption">
+        </div>
+      </ng-template>
+    </ngb-carousel>
+    </div>
