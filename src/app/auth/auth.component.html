@@ -11,15 +11,13 @@
               <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example3">Email address</label>
+                <label class="form-label" for="form3Example3">Username</label>
                   <input 
-                  type="email"
                   id="form3Example4"
                   class="form-control"
-                  name="email" 
+                  name="username" 
                   ngModel
-                  #email="ngModel"
-                  email="true"
+                  #username="ngModel"
                   (click)="resetError()"
                   />
                 </div>
@@ -35,7 +33,6 @@
                   (click)="resetError()"
                   />
                 </div>
-                <div class="invalid" *ngIf="email.invalid && email.touched;">Please enter a valid E-mail</div>
                 <div class="invalid">{{error}}</div>
                 <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="!authForm.valid">
                   Sign in

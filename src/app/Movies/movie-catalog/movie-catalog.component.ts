@@ -9,22 +9,28 @@ import { MovieService } from 'src/app/Services/movie.service';
 export class MovieCatalogComponent implements OnInit {
   movies: any[] = [];
   //movies: Movie[] = [];
-  page_count = 1;
+  page_count = 0;
   total_pages!: number;
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
-    this.movieService.loadTopRated(1).subscribe((response => {
-      this.movies = response.results;
-      this.total_pages = response.total_pages;
+    this.movieService.loadTopRated(this.page_count).subscribe((response => {
+      console.log(response);
+      this.page_count += 1;
+      //this.movies = response.results;
+      this.movies = response.content;
+      this.total_pages = response.totalPages;
     }))
   }
 
   loadMore() {
-    if (this.page_count <=this.total_pages) {
-      this.page_count += 1;
+    
+    if (this.page_count <this.total_pages) {
+      console.log(this.page_count);
       this.movieService.loadTopRated(this.page_count).subscribe((response => {
-      this.movies = this.movies.concat(response.results);
+      this.page_count += 1;
+      console.log(response);
+      this.movies = this.movies.concat(response.content);
       }))
     }
   }

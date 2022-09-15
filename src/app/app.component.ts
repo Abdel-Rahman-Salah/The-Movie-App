@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation} from '@angular/core';
-import { AuthService } from './Services/auth.service';
+import { AuthenticationService } from './Services/auth.service';
 import { Router, NavigationEnd} from '@angular/router'; 
 
 @Component({
@@ -9,10 +9,9 @@ import { Router, NavigationEnd} from '@angular/router';
 })
 export class AppComponent {
   title = 'The-Movie-App';
-  constructor(private authService: AuthService,private router: Router) {
+  constructor(private authenticationService: AuthenticationService,private router: Router) {
 
   }
   ngOnInit() {
-    this.authService.autoLogin();
   }
 }

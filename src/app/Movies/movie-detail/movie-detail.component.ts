@@ -25,11 +25,13 @@ export class MovieDetailComponent implements OnInit {
         this.movie_id=params['id']);
         
         this.movieService.loadDetails(this.movie_id).subscribe((response => {
+        console.log(response);
         this.movie=response;
         }))
         this.movieService.loadTrailer(this.movie_id).subscribe((response => {
           if(response.results.length>0)
           {
+            console.log(response);
             this.trailer_found=true;
             this.movie_trailer=response.results[0].key;
             this.movie_trailer='https://www.youtube.com/embed/'+this.movie_trailer;
@@ -37,6 +39,7 @@ export class MovieDetailComponent implements OnInit {
 
         }))
         this.movieService.loadCast(this.movie_id).subscribe((response => {
+          console.log(response);
           this.cast=response;
           }))
     }

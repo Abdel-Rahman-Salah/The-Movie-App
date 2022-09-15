@@ -7,8 +7,8 @@ import { MovieDetailComponent } from './Movies/movie-detail/movie-detail.compone
 import { MovieItemComponent } from './Movies/movie-catalog/movie-item/movie-item.component';
 import { MoviesComponent } from './Movies/movies.component';
 import { MovieService } from './Services/movie.service';
-import { AuthService } from './Services/auth.service';
-import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from './Services/auth.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule }   from '@angular/forms';
 import { SafePipe } from './Pipes/safeurl.pipe';
@@ -20,6 +20,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { authInterceptorProviders, JwtInterceptor } from './helpers/JwtInterceptor';
 
 
 
@@ -50,7 +51,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatIconModule
   ],
-  providers: [MovieService,AuthService],
+  providers: [AuthenticationService, MovieService,authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

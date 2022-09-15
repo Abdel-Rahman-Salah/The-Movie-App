@@ -11,8 +11,9 @@ constructor(private httpClient: HttpClient) { }
 
 loadTopRated(page_num:number)
 {
-  return this.httpClient.get<Movie>(
- "https://api.themoviedb.org/3/movie/top_rated?api_key=dc7aa974d986bf5845451288287de658&language=en-US&page="+page_num
+  return this.httpClient.get<any>(
+   "http://localhost:8989/api/movieslist/"+page_num
+ //"https://api.themoviedb.org/3/movie/top_rated?api_key=dc7aa974d986bf5845451288287de658&language=en-US&page="+page_num
   );
 }
 

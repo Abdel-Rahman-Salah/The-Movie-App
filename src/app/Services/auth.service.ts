@@ -1,71 +1,27 @@
-import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/internal/Observable";
-import { HttpClient } from '@angular/common/http';
-import { User } from "../Models/user.model";
-import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
-import { Router } from "@angular/router";
-
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
+const AUTH_API = 'http://localhost:8989/api/auth/';
+const httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
 @Injectable()
-export class AuthService {
-    users_list!: any[];
-    private _jsonURL = 'assets/users.json';
-    authenticated: boolean = false;
-    user = new BehaviorSubject<User | null>(null);
+export class AuthenticationService {
+    constructor(private http: HttpClient ,private router: Router) { }
 
-    constructor(private http: HttpClient, private router: Router) {
-        this.setUsers();
+    login(username: string, password: string): Observable<any> {
+      return this.http.post(AUTH_API + 'signin', {
+        username,
+        password
+      }, httpOptions);
     }
-
-    public setUsers() {
-        this.readUsers().subscribe(data => {
-            this.users_list = data;
-        });
-    }
-
-    public readUsers(): Observable<any> {
-        return this.http.get(this._jsonURL);
-    }
-
-    login(email: string, password: string) {
-        this.authenticated = false;
-        this.users_list.forEach((user_element) => {
-            if (user_element.email == email && user_element.password == password) {
-                this.authenticated = true;
-                const user = new User(email, password);
-                this.user.next(user);
-                localStorage.setItem('userData', JSON.stringify(user));
-            }
-
-        });
-        return this.authenticated;
-    }
-    autoLogin() {
-        let result = localStorage.getItem('userData');
-        if (result) {
-            const userData: {
-                email: string;
-                password: string;
-            } = JSON.parse(result);
-            const loadedUser = new User(
-                userData.email,
-                userData.password,
-            );
-
-            this.user.next(loadedUser);
-        }
-        else return;
-    }
-
-
-    getAuthStatus() {
-        return this.authenticated;
-    }
-
     logout() {
-        this.user.next(null);
+        // remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
         this.router.navigate(['/Login']);
-        localStorage.removeItem('userData');
     }
 }
+
 

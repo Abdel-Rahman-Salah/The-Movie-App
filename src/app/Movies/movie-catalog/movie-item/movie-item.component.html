@@ -1,12 +1,12 @@
-<div class="container">
-	<div class="movie-card" (click)="div_click(movie.id)">
+<div *ngIf="movie" class="container">
+	<div class="movie-card" (click)="div_click(movie.movieID)">
 		<div class="movie-header header-background"
 			[ngStyle]="{'background-image': 'url(http://image.tmdb.org/t/p/w500/' + movie.poster_path + ')'} ">
 		</div>
 		<!--movie-header-->
 		<div class="movie-content">
 			<div class="movie-content-header">
-				<a routerLink="/MovieDetail/{{movie.id}}">
+				<a routerLink="/MovieDetail/{{movie.movieID}}">
 					<div class="title-div">
 						<h3 class="movie-title">{{ movie.title }}</h3>
 					</div>

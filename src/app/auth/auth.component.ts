@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../Services/auth.service';
+import { AuthenticationService } from '../Services/auth.service';
 
 
 
@@ -13,26 +13,28 @@ import { AuthService } from '../Services/auth.service';
 })
 export class AuthComponent implements OnInit {
   error: string = "";
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
-    if (!form.valid) {
-      return;
+    const username=form.value.username;
+    const password=form.value.password;
+    this.authService.login(username, password).subscribe({
+      next: data => {
+        localStorage.setItem('currentUser', JSON.stringify(data));
+        this.router.navigate(['/MoviesCatalog']);
+      },
+      error: err => {
+        this.error = "Incorrect E-mail or Password";
+      }
+    });
     }
-    const email = form.value.email;
-    const password = form.value.password;
-    if (this.authService.login(email, password)) {
-      this.router.navigate(['/MoviesCatalog']);
+    resetError() {
+      this.error = "";
     }
-    else {
-      this.error = "Incorrect E-mail or Password";
-    }
-
-  }
-  resetError() {
-    this.error = "";
-  }
+    
 }
+
+
