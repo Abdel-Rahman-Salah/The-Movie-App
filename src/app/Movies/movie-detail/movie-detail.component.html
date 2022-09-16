@@ -34,16 +34,16 @@
 			</div>
 	
 	
-			<div class="row">
+			<div class="row" *ngIf="cast">
 				<h2><span style="color:#f5c518 ; font-size:larger; ">&#124;&#xfe0e;</span> Cast<br></h2>
 				<div class="col-12 col-md-6 col-lg-3" *ngFor="let item of [].constructor(8); let i = index">
 					<div class="card text-center">
 						<div class="card-body" *ngIf="cast">
-							<img [alt]="cast.cast[i].name" class="img-fluid rounded-circle"
-								[src]="'http://image.tmdb.org/t/p/w500/'+cast.cast[i].profile_path"
+							<img [alt]="cast.castList[i].name" class="img-fluid rounded-circle"
+								[src]="'http://image.tmdb.org/t/p/w500/'+cast.castList[i].profile_path"
 								onerror="this.onerror=null;this.src='https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png';"
-								[alt]=cast!.cast[i]!.name>
-							<h3 class="card-title py-2">{{cast!.cast[i]!.name}}</h3>
+								[alt]=cast!.castList[i]!.name>
+							<h3 class="card-title py-2">{{cast!.castList[i]!.name}}</h3>
 						</div>
 					</div>
 				</div>
