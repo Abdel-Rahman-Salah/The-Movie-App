@@ -3,12 +3,12 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 <app-navbar></app-navbar>
-<body *ngIf="movie">
-	<div class="header" >
-		<img class="d-block w-100" [src]="'http://image.tmdb.org/t/p/original/'+movie.backdrop_path" [alt]=movie.title>
+<body>
+	<div class="header" *ngIf="moviedetails">
+		<img class="d-block w-100" [src]="'http://image.tmdb.org/t/p/original/'+moviedetails.backdrop_path" [alt]=moviedetails.title>
 		<div class="carousel-caption">
-			<h5>{{movie.title}}</h5>
-			<p>{{movie.tagline}}</p>
+			<h5>{{moviedetails.title}}</h5>
+			<p>{{moviedetails.tagline}}</p>
 		</div>
 	</div>
 	
@@ -16,11 +16,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<span class="badge badge-pill bg-dark" *ngFor="let genre of movie?.genres">{{genre.name+""}}</span>
+					<span class="badge badge-pill bg-dark" *ngFor="let genre of moviedetails?.genres">{{genre.name+""}}</span>
 	
-					<div class="about-text">
+					<div class="about-text" *ngIf="moviedetails">
 						<h2><span style="color:#f5c518 ;font-size:larger">&#124;&#xfe0e;</span> Overview<br></h2>
-						<p> {{movie.overview}}</p>
+						<p> {{moviedetails.overview}}</p>
 					</div>
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 							<img [alt]="cast.castList[i].name" class="img-fluid rounded-circle"
 								[src]="'http://image.tmdb.org/t/p/w500/'+cast.castList[i].profile_path"
 								onerror="this.onerror=null;this.src='https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png';"
-								[alt]=cast!.castList[i]!.name>
+								[alt]=cast.castList[i].name>
 							<h3 class="card-title py-2">{{cast!.castList[i]!.name}}</h3>
 						</div>
 					</div>

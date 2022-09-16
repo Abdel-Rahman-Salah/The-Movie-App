@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MovieCatalogComponent } from './Movies/movie-catalog/movie-catalog.component';
-import { MovieDetailComponent } from './Movies/movie-detail/movie-detail.component';
+import { MovieDetailComponent } from './Movies/movie-details/movie-details.component';
 import { MovieItemComponent } from './Movies/movie-catalog/movie-item/movie-item.component';
 import { MoviesComponent } from './Movies/movies.component';
 import { MovieService } from './Services/movie.service';

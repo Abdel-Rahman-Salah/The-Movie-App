@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { MovieCatalogComponent } from './Movies/movie-catalog/movie-catalog.component';
-import { MovieDetailComponent } from './Movies/movie-detail/movie-detail.component';
+import { MovieDetailComponent } from './Movies/movie-details/movie-details.component';
 import { AuthGuard } from './Services/auth.guard';
 
 const routes: Routes = [ 
